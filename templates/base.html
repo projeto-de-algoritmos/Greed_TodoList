@@ -14,33 +14,67 @@
     
     <div style="margin-top: 50px;" class="ui container">
         
-    <h1 class="ui center aligned header" >To do listttt</h1>
+        <h1 class="ui center aligned header" >To do listttt</h1>
 
-    <form action="/add" method="POST" class="ui center aligned form">
-        <div class="field">
-            <label for="Title">Todo title</label>
-            <input type="text" name = "title" placeholder="Enter the title...">
-            <br>
-            <button class="ui blue button" type="submit">Add</button>
-        </div>
-    </form>
-
-
-    {% for todo in todo_list %}
         <div class="ui segment">
-            <p class = "ui big header">{{ todo.id }} | {{todo.Title}} </p>
+            <div class="ui two column very relaxed grid">
+              <div class="column">
+                <form action="/add" method="POST" class="ui center aligned form" style="width: 500px;">
 
-            {% if todo.Completed == False %}
-                <span class="ui grey label">Tarefa não concluída!!</span>
-            {% else %}
-                <span class="ui green label">Tarefa concluída !!</span>
-            {% endif %}
+                    <div class="field" >
+                        <label for="Title">Todo title</label>
+                        <input type="text" name = "title" placeholder="Enter the title...">
+                        <br>
+                    </div>
+        
+                    <div class="field" >
+                        <label for="Processing time">Processing time</label>
+                        <input type="number" name = "process" placeholder="Enter the processing time...">
+                        <br>
+                    </div>
+        
+                    <div class="field" >
+                        <label for="Deadline">Deadline</label>
+                        <input type="date" name = "deadline" placeholder="Enter the deadline...">
+                        <br>
+                        <br>
+                        <button class="ui blue button" type="submit">Add</button>
+                    </div>
+                </form>
+              </div>
+              <div class="column"> 
+                <h3>Sort by : </h3>
+              </div>
+            </div>
+            <div class="ui vertical divider">
+              and
+            </div>
+          </div>
+        
 
-            <a class="ui blue button" href="/update/{{todo.id}}">Atualizar</a>
-            <a class="ui red button" href="/delete/{{todo.id}}">Excluir</a>
-        </div>  
-    {% endfor%}
+        {% for todo in todo_list %}
+            <div class="ui segment">
+                <p class = "ui big header">{{ todo.id }} | {{todo.Title}} </p>
+                {% if todo.ProcessTime  == 1%}
+                    <p class = "ui big header">Processing time | {{todo.ProcessTime}} day</p>
+                {% else %}
+                    <p class = "ui big header">Processing time | {{todo.ProcessTime}} days</p>
+                {% endif %}
 
+                <p class = "ui big header">Deadline {{todo.Deadline}}</p>
+                <p class = "ui big header">Days until deadline  | {{todo.Deadline - now }}</p>
+                
+                <a class="ui blue button" href="/update/{{todo.id}}">Atualizar</a>
+                <a class="ui red button" href="/delete/{{todo.id}}">Excluir</a>
+
+                {% if todo.Completed == False %}
+                    <span class="ui grey button">Tarefa não concluída!!</span>
+                {% else %}
+                    <span class="ui green button">Tarefa concluída !!</span>
+                {% endif %}
+
+            </div>  
+        {% endfor%}
 
     </div>
 
