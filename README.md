@@ -48,6 +48,9 @@ Comandos em ordem :
  - pip install pandas
  - export FLASK_APP=todo
  - flask run
+ 
+Depois é só acessar : localhost:5000
+
 
 ## Outros 
 O esqueleto da aplicação foi tirado do vídeo : https://www.youtube.com/watch?v=yKHJsLUENl0
