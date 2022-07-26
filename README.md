@@ -7,7 +7,7 @@
 |Matrícula | Aluno |
 | -- | -- |
 | 19/0111836  |  Luan Vasco Cavalcante |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 18/0130889  |  Sávio Cunha de Carvalho |
 
 ## Sobre 
 O meu projeto tem o objetivo de demonstrar como o algoritmo de Scheduling To Minimize Lateness impactaria uma todo list.
@@ -29,6 +29,9 @@ Para rodar o programa na sua máquina você precisa instalar :
 
 
 ## Uso 
+Se você preferir rodar em um ambiente virtual :
+    - python3 -m venv nome_env
+    - source nome_env/bin/activate
 
 Comandos em ordem :
  - pip install Flask
