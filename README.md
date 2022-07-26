@@ -26,6 +26,7 @@ Feito isso, uma lista surgirá na direita conforme for aumentando as suas Todo's
 ## Instalação 
 **Linguagem**: Python<br>
 **Framework**: Flask<br>
+**Sistema Operacional**: Linux<br>
 
 Para rodar o programa na sua máquina você precisa instalar :
 
