@@ -18,11 +18,17 @@ Feito isso, uma lista surgirá na direita conforme for aumentando as suas Todo's
 
 ## Screenshots
 
+![alt text](https://github.com/projeto-de-algoritmos/Greed_TodoList/blob/master/media/foto1.png)
+![alt text](https://github.com/projeto-de-algoritmos/Greed_TodoList/blob/master/media/foto2.png)
+![alt text](https://github.com/projeto-de-algoritmos/Greed_TodoList/blob/master/media/foto3.png)
+![alt text](https://github.com/projeto-de-algoritmos/Greed_TodoList/blob/master/media/foto4.png)
+
 ## Instalação 
 **Linguagem**: Python<br>
 **Framework**: Flask<br>
 
 Para rodar o programa na sua máquina você precisa instalar :
+
     - Flask
     - SQLAlchemy
     - Pandas 
@@ -30,10 +36,12 @@ Para rodar o programa na sua máquina você precisa instalar :
 
 ## Uso 
 Se você preferir rodar em um ambiente virtual :
-    - python3 -m venv nome_env
-    - source nome_env/bin/activate
+
+ - python3 -m venv nome_env
+ - source nome_env/bin/activate
 
 Comandos em ordem :
+
  - pip install Flask
  - pip install -U Flask-SQLAlchemy
  - pip install pandas
