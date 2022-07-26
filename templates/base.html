@@ -44,6 +44,18 @@
               </div>
               <div class="column"> 
                 <h3>Sort by : </h3>
+                <a class="ui blue button" href="/">ID</a>
+                <a class="ui blue button" href="/deadline">Deadline</a>
+                <a class="ui blue button" href="/process_time">ProcessTime</a>
+
+                {% for key,item in lateness.items() %}
+                    {% if item < 0 %}
+                        <p class = "ui big header"> Todo: {{key}} | Atraso : {{0}} |</p>
+                    {% else %}
+                        <p class = "ui big header"> Todo: {{key}} | Atraso : {{item}} |</p>
+                    {% endif %}
+
+                {% endfor%}
               </div>
             </div>
             <div class="ui vertical divider">
@@ -51,7 +63,6 @@
             </div>
           </div>
         
-
         {% for todo in todo_list %}
             <div class="ui segment">
                 <p class = "ui big header">{{ todo.id }} | {{todo.Title}} </p>

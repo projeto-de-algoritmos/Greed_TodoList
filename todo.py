@@ -1,6 +1,7 @@
 from flask import Flask, render_template,request,redirect,url_for
-from flask_sqlalchemy import SQLAlchemy
-from datetime import date,datetime
+from flask_sqlalchemy import SQLAlchemy 
+from datetime import date,datetime,timedelta
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -26,7 +27,11 @@ def homepage():
     '''
     todo_list = Todo.query.all()
 
-    return render_template('base.html',todo_list = todo_list,now = date.today())
+    late = lateness(todo_list)
+
+    #todo_list = Todo.query.order_by(Todo.Deadline).all()
+    print(todo_list)
+    return render_template('base.html',todo_list = todo_list,now = date.today(),lateness = late)
 
 @app.route('/add',methods = ['POST'])
 def add():
@@ -69,6 +74,76 @@ def delete(todo_id):
     db.session.commit()
 
     return redirect(url_for("homepage"))
+
+@app.route('/deadline')
+def sort_deadline():
+    # pegar os dados do banco ordenados pela deadline
+    # date
+    # calcular lateness
+    # redirecionar pra homepage
+    # printar em ordem e printar lateness
+    #todo_list = Todo.query.all()
+
+    todo_list = Todo.query.order_by(Todo.Deadline).all()
+    print(todo_list)
+
+    #print(todo_list)
+
+    late = lateness(todo_list)
+
+    return render_template('base.html',todo_list = todo_list,now = date.today(),lateness = late)
+
+def lateness(todo_list):
+
+    late = {}
+
+    Current = date.today()
+
+    if(len(todo_list) == 0):
+        return {}
+
+    for todo in todo_list:
+        end = (Current + timedelta(todo.ProcessTime))
+
+        #print(f"Para {todo.Title} :\nDeadline {todo.Deadline}\nCurrent {Current}\nProcess {todo.ProcessTime}\n")
+        if(todo.Deadline >= end):
+            late[todo.Title] = (end - todo.Deadline)
+        else:
+            #print(f"Atraso {end - todo.Deadline}")
+            late[todo.Title] = (end - todo.Deadline)
+
+        
+        Current = Current + timedelta(todo.ProcessTime)
+
+    late_dict = pd.Series(late)
+
+    #print("####################")
+    #print(late_dict)
+    lateness_list = late_dict.dt.days
+
+    #print(lateness_list)
+    
+    late_dic = {}
+    i = 0
+    for todo in todo_list:
+        late_dic[todo.Title] = lateness_list[i]
+        i = i + 1
+
+    return late_dic
+
+@app.route('/process_time')
+def sort_process_time():
+    # pegar os dados do banco ordenados pela process
+    # calcular lateness
+    # redirecionar pra homepage
+    # printar em ordem e printar lateness
+    #todo_list = Todo.query.all()
+
+    todo_list = Todo.query.order_by(Todo.ProcessTime).all()
+    #print(todo_list)
+
+    late = lateness(todo_list)
+    return render_template('base.html',todo_list = todo_list,now = date.today(),lateness = late)
 
 # here we go
 if __name__ == "__main__":
