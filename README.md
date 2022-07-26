@@ -46,6 +46,8 @@ Comandos em ordem :
  - pip install Flask
  - pip install -U Flask-SQLAlchemy
  - pip install pandas
+ - git clone https://github.com/projeto-de-algoritmos/Greed_TodoList.git
+ - cd Greed_TodoList
  - export FLASK_APP=todo
  - flask run
  
